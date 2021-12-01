@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("1.png")
+img = cv2.imread("<select image>")
 
 ## Resim okunduğunu anlamak için bu sorgu yapılır...
 ## print(img)
@@ -11,7 +11,7 @@ img_height = img.shape[0]
 
 img_blob = cv2.dnn.blobFromImage(img, 1/255, (416,416), swapRB=True, crop=False)
 
-labels = ["dunyanin_en_guzeli","bicycle","car","motorcycle","airplane","bus","train","truck","boat",
+labels = ["person","bicycle","car","motorcycle","airplane","bus","train","truck","boat",
         "trafficlight","firehydrant","stopsign","parkingmeter","bench","bird","cat",
         "dog","horse","sheep","cow","elephant","bear","zebra","giraffe","backpack",
         "umbrella","handbag","tie","suitcase","frisbee","skis","snowboard","sportsball",
@@ -28,7 +28,7 @@ colors = [np.array(color.split(",")).astype("int") for color in colors ]
 colors = np.array(colors)
 colors = np.tile(colors,(18,1))
 
-model = cv2.dnn.readNetFromDarknet("D:/YOLO/pretrained_model/yolov3.cfg","D:/YOLO/pretrained_model/yolov3.weights")
+model = cv2.dnn.readNetFromDarknet("<yolov3.cfg path","<yolov3.weights path>")
 
 layers = model.getLayerNames()
 output_layer = [layers[layer[0]-1] for layer in model.getUnconnectedOutLayers()]
